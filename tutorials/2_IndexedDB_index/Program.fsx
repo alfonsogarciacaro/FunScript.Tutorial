@@ -169,7 +169,7 @@ module Program =
         |> populatedata
         |> Async.StartImmediate
 
-// Compile the code to JS and copy the html file and the genereated script to the parent directory
+// Compile the code to JS and copy the html file and the generated script to the parent directory
 open System.IO
 let dir = __SOURCE_DIRECTORY__
 let components = FunScript.HTML.Components.getHTMLComponents()

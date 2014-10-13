@@ -6,9 +6,9 @@
 #r "FunScript.TypeScript.Binding.lib.dll"
 
 // You must always mark the code you want to compile to JavaScript
-// with the attribute ReflectedDefinition. This will ask the F# compiler
+// with the ReflectedDefinition attribute. This will ask the F# compiler
 // to create the expression tree that FunScript will read and compile to JS.
-// Alternatively, you can use the alias FunScript.JS
+// Alternatively, you can use the FunScript.JSAttribute alias.
 [<ReflectedDefinition>]
 module Program =
     open FunScript.TypeScript
@@ -26,7 +26,7 @@ module Program =
         h1.textContent <- "Hello World!"
 
 
-// This will compile the code to JS and copy the html file and the genereated script to the parent directory
+// This will compile the code to JS and copy the html file and the generated script to the parent directory
 open System.IO
 let dir = __SOURCE_DIRECTORY__
 // External libraries can provide additional components to FunScript compiler
