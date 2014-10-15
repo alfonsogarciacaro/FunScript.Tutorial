@@ -11,6 +11,7 @@
 // This statements will only compile to JS if you add "--define:DEBUG" to
 // Tools > Options > F# Tools > F# Interactive > F# interactive Options
 // in Visual Studio or Xamarin Studio (the path may to the option may vary a bit)
+// and restart F# interactive.
 // When you're finished debugging, remove it and your code will be ready for production!
 
 [<ReflectedDefinition>]
