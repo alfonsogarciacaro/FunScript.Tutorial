@@ -4,13 +4,12 @@
 #r "FunScript.Interop.dll"
 #r "FunScript.TypeScript.Binding.lib.dll"
 
-// Adapted from the IDBIndex example in MDN: mdn.github.io/IDBcursor-example
+// Adapted from the example in MDN: mdn.github.io/IDBcursor-example
 // For more detailed comments, see the IndexedDB_index example
 
 [<ReflectedDefinition>]
 module Program =
     open FSharp.Control
-    open Microsoft.FSharp.Quotations
     open FunScript.TypeScript
     open FunScript.HTML
     open FunScript.HTML.Storage
