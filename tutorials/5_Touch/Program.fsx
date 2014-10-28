@@ -1,8 +1,9 @@
 #I "../../lib"
-#r "FunScript.dll"
-#r "FunScript.HTML.dll"
-#r "FunScript.Interop.dll"
 #r "FunScript.TypeScript.Binding.lib.dll"
+#r @"C:\Users\Alfonso\Documents\GitHub\FunScript\src\main\FunScript\bin\Release\FunScript.dll"
+#r @"C:\Users\Alfonso\Documents\GitHub\FunScript\src\main\FunScript\bin\Release\FunScript.Interop.dll"
+#r @"C:\Users\Alfonso\Documents\GitHub\FunScript.HTML\src\main\bin\Release\FunScript.HTML.dll"
+
 
 // Adapted from http://mobiforge.com/design-development/html5-mobile-web-touch-events
 
@@ -49,7 +50,7 @@ module Program =
                             | TStart { startX = x; startY = y; time = dt }
                             | TMove  { endX = x;   endY = y;   time = dt } ->
                                 // Not an ideal solution, but keep some time lapse to prevent too much jiggling
-                                if DateTime.Now.Subtract(dt).TotalMilliseconds < Literals.timeLapse
+                                if (DateTime.Now - dt).TotalMilliseconds < Literals.timeLapse
                                 then positions.[touch.identifier]
                                 else TMove {startX=x; startY=y; endX=touch.pageX; endY=touch.pageY; time=DateTime.Now; isDrawn=ref false}
             | TouchCancel e
