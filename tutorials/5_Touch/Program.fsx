@@ -1,9 +1,8 @@
 #I "../../lib"
+#r "FunScript.dll"
+#r "FunScript.Interop.dll"
 #r "FunScript.TypeScript.Binding.lib.dll"
-#r @"C:\Users\Alfonso\Documents\GitHub\FunScript\src\main\FunScript\bin\Release\FunScript.dll"
-#r @"C:\Users\Alfonso\Documents\GitHub\FunScript\src\main\FunScript\bin\Release\FunScript.Interop.dll"
-#r @"C:\Users\Alfonso\Documents\GitHub\FunScript.HTML\src\main\bin\Release\FunScript.HTML.dll"
-
+#r "FunScript.HTML.dll"
 
 // Adapted from http://mobiforge.com/design-development/html5-mobile-web-touch-events
 
