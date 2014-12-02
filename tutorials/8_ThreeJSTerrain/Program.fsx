@@ -1,21 +1,17 @@
-// First include references to the libraries we'll be using
+// Adapted from:                http://threejs.org/examples/#webgl_geometry_terrain
+// Contributed by John Quigley: https://github.com/jmquigs
+
 #I "../../lib"
 #r "FunScript.dll"
-#r "FunScript.HTML.dll"
 #r "FunScript.Interop.dll"
 #r "FunScript.TypeScript.Binding.lib.dll"
 
-#I "./lib"
 #r "FunScript.TypeScript.Binding.three.dll" // Generated from the standard three.js typescript def 
 #r "FunScript.TypeScript.Binding.threex.dll" // Generated from threex.d.ts in this project
 
 open FunScript
 open FunScript.TypeScript
 
-// You must always mark the code you want to compile to JavaScript
-// with the ReflectedDefinition attribute. This will ask the F# compiler
-// to create the expression tree that FunScript will read and compile to JS.
-// Alternatively, you can use the FunScript.JSAttribute alias.
 [<ReflectedDefinition>]
 module Program =
 
@@ -207,12 +203,17 @@ module Program =
         // kick it off
         animate(0.0)
 
+
 // This will compile the code to JS and copy the html file and the generated script to the parent directory
 open System.IO
 let dir = __SOURCE_DIRECTORY__
-// External libraries can provide additional components to FunScript compiler
-// In most of the tutorials we'll be using components from FunScript.HTML extensions
-let components = FunScript.HTML.Components.getHTMLComponents()
-let code = FunScript.Compiler.Compiler.Compile(<@ Program.main() @>, noReturn=true, components=components)
+let code = FunScript.Compiler.Compiler.Compile(<@ Program.main() @>, noReturn=true)
 File.WriteAllText(Path.Combine(dir, "../app.js"), code)
 File.Copy(Path.Combine(dir, "index.html"), Path.Combine(dir, "../index.html"), overwrite=true)
+
+// Copy additional JS scripts
+let jsdir = Path.Combine(dir, "../js")
+if not <| Directory.Exists(jsdir) then Directory.CreateDirectory(jsdir) |> ignore
+Directory.GetFiles(Path.Combine(dir, "js"))
+|> Seq.map (fun f -> Path.GetFileName f)
+|> Seq.iter (fun f -> File.Copy(Path.Combine(dir, "js/" + f), Path.Combine(jsdir, f), overwrite=true))
