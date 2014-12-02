@@ -181,5 +181,7 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
 tutorials/app.js
 tutorials/index.html
+tutorials/js
