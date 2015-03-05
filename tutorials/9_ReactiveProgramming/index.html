@@ -1,0 +1,66 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FunScript Tutorial</title>
+    <style>
+    body {
+        font-family: sans-serif;
+        padding: 10px;
+    }
+    h2 {
+        font-weight: bold;
+        display: inline-block;
+    }
+    .refresh {
+        font-size: 80%;
+        margin-left: 10px;
+    }
+    .header {
+        background: #ECECEC;
+        padding: 5px;
+    }
+    .suggestions {
+        border: 2px solid #ECECEC;
+    }
+    li {
+        padding: 5px;
+        list-style-type: none;
+    }
+    li img {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+    }
+    li .username, li .close {
+        display: inline-block;
+        position: relative;
+        bottom: 15px;
+        left: 5px;
+    }
+    </style>
+</head>
+<body>
+♦<div id="ractive-container"></div>
+<script id="ractive-template" type="text/ractive">
+    <div class="header">
+        <h2>Who to follow</h2>
+        <a href="#" class="refresh" on-click="refresh">Refresh</a>
+    </div>
+    <ul class="suggestions">
+        {{#suggestions:i}}
+        <li>
+            <img src="{{avatar_url}}" on-click="close" />
+            <a href="{{html_url}}" target="_blank" class="username">
+                {{login}}
+            </a>
+            <a href="#" class="close" on-click="close">x</a>
+        </li>
+        {{/suggestions}}
+    </ul>
+</script>
+
+<script src='ractive.js'></script>
+<script src="app.js"></script>
+</body>
+</html>
