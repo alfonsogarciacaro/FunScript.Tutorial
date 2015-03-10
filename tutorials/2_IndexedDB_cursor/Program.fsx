@@ -108,6 +108,9 @@ module Program =
         |> Async.StartImmediate
 
 // Compile the code to JS and copy the html file and the generated script to the parent directory
-FunScript.Compiler.Compiler.Compile(<@ Program.main() @>, noReturn=true)
-|> fun x -> sprintf "(function(global){%s}(typeof window!=='undefined'?window:global));" x
-|> fun x -> System.IO.File.WriteAllText(__SOURCE_DIRECTORY__ + "/app.js", x)
+open System.IO
+let dir = __SOURCE_DIRECTORY__
+let components = FunScript.HTML.Components.getHTMLComponents()
+let code = FunScript.Compiler.Compiler.Compile(<@ Program.main() @>, noReturn=true, components=components)
+File.WriteAllText(Path.Combine(dir, "../app.js"), code)
+File.Copy(Path.Combine(dir, "index.html"), Path.Combine(dir, "../index.html"), overwrite=true)
